@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "NovaFlow AI automatise vos processus métier avec des agents IA intelligents. Zéro code, déploiement en 30 jours, ROI prouvé.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="fr"
