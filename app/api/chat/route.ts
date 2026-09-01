@@ -5,12 +5,12 @@ import { searchKnowledge } from '../../lib/knowledge';
 // Le premier qui répond dans le timeout est utilisé (fallback automatique)
 const MODELS_FREE = [
   'minimax/minimax-m3:free',
-  'nvidia/nemotron-3-super-120b-a12b:free',
-  'nvidia/nemotron-3-ultra-550b-a55b:free',
+  'google/gemma-4-31b-it:free',
+  'z-ai/glm-5.2:free',
 ];
 
-const REQUEST_TIMEOUT_MS = 20000; // 20s max par modèle
-const MAX_MODELS_TRIED = 2; // max 2 tentatives (40s worst case)
+const REQUEST_TIMEOUT_MS = 15000; // 15s max par modèle
+const MAX_MODELS_TRIED = 2; // max 2 tentatives (30s worst case, puis fallback local)
 
 const SYSTEM_PROMPT = `Tu es l'assistant intelligent de NovaFlow AI, une entreprise d'automatisation et d'IA basée à Abidjan (Côte d'Ivoire).
 Tu réponds en français, de façon claire, chaleureuse et professionnelle.
@@ -74,6 +74,37 @@ async function callModel(model: string, prompt: string): Promise<string> {
   }
 }
 
+/**
+ * Nettoyage des réponses LLM :
+ * - retire les blocs de raisonnement entre  et 
+ * - détecte les contenus commençant par des métacommentaires en anglais
+ *   ("Okay, the user is asking...", "The user wants me...", "Let me check...")
+ *   typiques des modèles qui fuient leur raisonnement
+ */
+function cleanReasoning(content: string): string | null {
+  if (!content) return null;
+
+  // Retire les balises de raisonnement
+  let cleaned = content.replace(/<thinking>[\s\S]*?<\/thinking>/g, '').replace(/<reasoning>[\s\S]*?<\/reasoning>/g, '').trim();
+  if (!cleaned) return null;
+
+  // Détecte les fuites de raisonnement en anglais au début
+  const leakPatterns = [
+    /^okay[,:]? the (user|question)/i,
+    /^the user (is )?(asking|wants|needs)/i,
+    /^let me (check|look|see|think)/i,
+    /^i need to (check|look|find|answer)/i,
+    /^as an ai/i,
+    /^first,? i need/i,
+    /^looking through/i,
+    /^the question (is|translates)/i,
+    /^since (they|the user|it)/i,
+  ];
+  if (leakPatterns.some((p) => p.test(cleaned))) return null;
+
+  return cleaned;
+}
+
 export async function POST(request: Request) {
   try {
     const { messages } = await request.json();
@@ -104,7 +135,9 @@ export async function POST(request: Request) {
     for (const model of toTry) {
       try {
         const content = await callModel(model, prompt);
-        return NextResponse.json({ content });
+        const cleaned = cleanReasoning(content);
+        if (!cleaned) throw new Error('Response filtered (reasoning leak)');
+        return NextResponse.json({ content: cleaned });
       } catch (err) {
         lastError = err instanceof Error ? err.message : 'Erreur inconnue';
         console.error(`Model ${model} failed:`, lastError);
