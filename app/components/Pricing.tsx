@@ -1,30 +1,24 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Check, X, HelpCircle } from 'lucide-react';
+import { Check, HelpCircle } from 'lucide-react';
 
 const plans = [
   {
-    name: 'Découverte',
-    price: '0',
-    period: '/mois',
-    description: 'Pour tester et valider votre premier workflow automatisé.',
+    name: 'Starter',
+    price: '[Prix à définir]',
+    period: 'FCFA/mois',
+    description: 'L\'essentiel pour automatiser vos premiers processus et valider le concept.',
     features: [
-      '1 workflow actif',
-      '100 exécutions/mois',
+      '3 workflows actifs',
+      '1 000 exécutions/mois',
       '1 agent IA spécialisé',
+      'Connecteurs essentiels (Email, Google, API)',
       'Logs & monitoring basique',
-      'Support communautaire',
+      'Support email (réponse sous 48h)',
       'Hébergement NovaFlow Cloud',
     ],
-    notIncluded: [
-      'Workflows illimités',
-      'Agents IA personnalisés',
-      'Intégrations premium (Salesforce, SAP, etc.)',
-      'SLA & support prioritaire',
-      'Déploiement on-premise',
-    ],
-    cta: 'Commencer gratuitement',
+    cta: 'Choisir Starter',
     ctaVariant: 'outline',
     popular: false,
     gradient: 'from-gray-500 to-gray-600',
@@ -32,8 +26,8 @@ const plans = [
   },
   {
     name: 'Pro',
-    price: '99',
-    period: '/mois',
+    price: '[Prix à définir]',
+    period: 'FCFA/mois',
     description: 'Pour les équipes qui automatisent leurs processus critiques.',
     features: [
       'Workflows illimités',
@@ -45,11 +39,6 @@ const plans = [
       'Rôles & permissions équipe',
       'API & webhooks',
     ],
-    notIncluded: [
-      'Déploiement on-premise',
-      'SLA 99.9% garanti',
-      'Account manager dédié',
-    ],
     cta: 'Lancer mon essai Pro',
     ctaVariant: 'primary',
     popular: true,
@@ -57,7 +46,7 @@ const plans = [
     bgGradient: 'from-blue-50 to-cyan-50',
   },
   {
-    name: 'Entreprise',
+    name: 'Business',
     price: 'Sur devis',
     period: '',
     description: 'Pour les organisations aux exigences de sécurité et d\'échelle élevées.',
@@ -73,7 +62,6 @@ const plans = [
       'Formation & onboarding sur site',
       'Contrats & facturation adaptés',
     ],
-    notIncluded: [],
     cta: 'Contacter le commercial',
     ctaVariant: 'outline',
     popular: false,
@@ -116,7 +104,7 @@ export default function Pricing() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Commencez gratuitement. Passez à la vitesse supérieure quand vous êtes prêt.
+            Des offres pensées pour chaque étape de votre croissance.
             Sans engagement, résiliable à tout moment.
           </p>
         </motion.div>
@@ -175,19 +163,6 @@ export default function Pricing() {
                     <span className="text-gray-700 text-sm">{feature}</span>
                   </motion.li>
                 ))}
-                {plan.notIncluded.map((feature, i) => (
-                  <motion.li
-                    key={`not-${i}`}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: (plan.features.length + i) * 0.05 }}
-                    className="flex items-start gap-3 opacity-50"
-                  >
-                    <X className="w-5 h-5 flex-shrink-0 text-gray-400 mt-0.5" />
-                    <span className="text-gray-500 text-sm line-through">{feature}</span>
-                  </motion.li>
-                ))}
               </ul>
 
               <motion.button
@@ -240,7 +215,7 @@ export default function Pricing() {
             </a>
           </p>
           <p className="text-sm text-gray-500">
-            Tous les plans incluent 14 jours d\'essai gratuit · Pas de carte bancaire requise · RGPD by design
+            Chaque offre inclut 14 jours d'essai gratuit · Sans carte bancaire · RGPD by design
           </p>
         </motion.div>
       </div>
