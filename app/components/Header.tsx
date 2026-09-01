@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 const nav = [
-  { label: 'Offres', href: '#tarifs' },
+  { label: 'Services', href: '#services' },
+  { label: 'Comment ça marche', href: '#comment-ca-marche' },
+  { label: 'Tarifs', href: '#tarifs' },
   { label: 'À propos', href: '#a-propos' },
-  { label: 'Contact', href: '#contact' },
 ];
 
 export default function Header() {
