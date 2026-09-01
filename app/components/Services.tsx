@@ -133,8 +133,7 @@ export default function Services() {
                 />
                 
                 <motion.div
-                  className="relative w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br text-white"
-                  style={{ background: `linear-gradient(135deg, ${service.gradient.split(" ")[0].replace("from-", "")}, ${service.gradient.split(" ")[1].replace("to-", "")})` }}
+                  className={`relative w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br text-white ${service.gradient}`}
                   variants={iconVariants}
                 >
                   <Icon className="w-7 h-7 text-white" strokeWidth={2} />

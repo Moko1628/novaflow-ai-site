@@ -171,7 +171,7 @@ export default function Pricing() {
               <motion.button
                 className={`w-full py-3 px-6 rounded-xl font-semibold text-sm transition-all duration-200 ${
                   plan.ctaVariant === "primary"
-                    ? "bg-gradient-to-r text-white hover:shadow-lg hover:-translate-y-0.5"
+                    ? `bg-gradient-to-r text-white hover:shadow-lg hover:-translate-y-0.5 ${plan.gradient}`
                     : "border-2 bg-white hover:bg-gray-50"
                 }`}
                 whileTap={{ scale: 0.98 }}
