@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   Zap, 
   Brain, 
@@ -95,9 +95,6 @@ const benefits = [
 ];
 
 export default function HowItWorks() {
-  const { scrollY } = useScroll();
-  const yTransform = useTransform(scrollY, [0, 500], [0, 100]);
-
   return (
     <section id="comment-ca-marche" className="py-24 md:py-32 bg-gray-50">
       <div className="container mx-auto px-6">
