@@ -6,18 +6,19 @@ import { Check, HelpCircle } from "lucide-react";
 const plans = [
   {
     name: "Starter",
-    price: "[Prix à définir]",
+    setup: "150 000",
+    monthly: "15 000",
     period: "FCFA/mois",
     description: "L'essentiel pour automatiser vos premiers processus et valider le concept.",
     features: [
-      "3 workflows actifs",
-      "1 000 exécutions/mois",
-      "1 agent IA spécialisé",
-      "Connecteurs essentiels (Email, Google, API)",
-      "Logs & monitoring basique",
-      "Support email (réponse sous 48h)",
-      "Hébergement NovaFlow Cloud",
+      "Automatisation simple d'un processus unique",
+      "Tri automatique des emails entrants",
+      "Réponses générées par IA aux demandes courantes",
+      "Mise en place et configuration initiale incluses",
+      "Support par email (48h)",
+      "Engagement 12 mois",
     ],
+    ideal: "Petites entreprises ou startups avec un seul processus à automatiser.",
     cta: "Choisir Starter",
     ctaVariant: "outline",
     popular: false,
@@ -26,20 +27,20 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "[Prix à définir]",
+    setup: "150 000",
+    monthly: "75 000",
     period: "FCFA/mois",
-    description: "Pour les équipes qui automatisent leurs processus critiques.",
+    description: "Automatisation avancée avec génération de documents et intégration CRM.",
     features: [
-      "Workflows illimités",
-      "10 000 exécutions/mois",
-      "5 agents IA spécialisés",
-      "Analytics avancées & alertes",
-      "Intégrations premium incluses",
+      "Automatisation avancée des réponses email",
+      "Génération automatique de devis",
+      "Intégration CRM basique (suivi clients)",
+      "Base de connaissances personnalisée (FAQ, tarifs, produits)",
       "Support email prioritaire (24h)",
-      "Rôles & permissions équipe",
-      "API & webhooks",
+      "Engagement 12 mois",
     ],
-    cta: "Lancer mon essai Pro",
+    ideal: "PME avec plusieurs processus à connecter et un volume de demandes régulier.",
+    cta: "Lancer mon Pro",
     ctaVariant: "primary",
     popular: true,
     gradient: "from-blue-500 to-cyan-500",
@@ -47,21 +48,19 @@ const plans = [
   },
   {
     name: "Business",
-    price: "Sur devis",
-    period: "",
-    description: "Pour les organisations aux exigences de sécurité et d'échelle élevées.",
+    setup: "700 000",
+    monthly: "60 000",
+    period: "FCFA/mois",
+    description: "Automatisation multi-outils et multi-départements, plusieurs agents IA.",
     features: [
-      "Tout le plan Pro",
-      "Exécutions illimitées",
-      "Agents IA illimités & personnalisés",
-      "Déploiement on-premise / cloud privé",
-      "SLA 99.9% avec pénalités",
-      "Support 24/7 avec téléphone",
-      "Account manager dédié",
-      "SSO (SAML/OIDC) & audit complet",
-      "Formation & onboarding sur site",
-      "Contrats & facturation adaptés",
+      "Tout le contenu du Pack Pro",
+      "Automatisation multi-canal : WhatsApp, Slack, email",
+      "Tableau de bord de suivi en temps réel",
+      "Plusieurs agents IA connectés entre eux",
+      "Support email dédié",
+      "Engagement 12 mois",
     ],
+    ideal: "Entreprises avec plusieurs départements ou un volume de demandes important.",
     cta: "Contacter le commercial",
     ctaVariant: "outline",
     popular: false,
@@ -116,22 +115,17 @@ export default function Pricing() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {plans.map((plan, index) => (
+          {plans.map((plan) => (
             <motion.article
               key={plan.name}
               variants={cardVariants}
               whileHover="hover"
-              className={`relative rounded-2xl p-8 bg-white border transition-all duration-300 ${
-                plan.popular
-                  ? "border-2 shadow-xl ring-4 ring-blue-500/20"
-                  : "border-gray-200 hover:border-gray-300 hover:shadow-lg"
-              } ${plan.bgGradient}`}
+              className={`relative rounded-2xl p-8 bg-white border transition-all duration-300 ${plan.bgGradient} ${plan.popular ? "border-2 shadow-xl ring-4 ring-blue-500/20" : "border-gray-200 hover:border-gray-300 hover:shadow-lg"}`}
             >
               {plan.popular && (
                 <motion.div
                   variants={badgeVariants}
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-white"
-                  style={{ background: `linear-gradient(135deg, ${plan.gradient.split(" ")[0].replace("from-", "")}, ${plan.gradient.split(" ")[1].replace("to-", "")})` }}
+                  className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${plan.gradient}`}
                 >
                   Le plus choisi
                 </motion.div>
@@ -143,10 +137,19 @@ export default function Pricing() {
               </div>
 
               <div className="mb-6">
-                <div className="flex items-baseline gap-1">
-                  <span className="text-5xl font-bold text-gray-900">{plan.price}</span>
-                  {plan.period && <span className="text-gray-500">{plan.period}</span>}
+                <div className="text-sm text-gray-500 mb-1">Mise en place</div>
+                <div className="text-4xl font-bold text-gray-900 mb-3">
+                  {plan.setup} <span className="text-lg font-medium">FCFA</span>
                 </div>
+                <div className="text-sm text-gray-500 mb-1">Puis maintenance mensuelle</div>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-2xl font-bold text-gray-900">{plan.monthly}</span>
+                  <span className="text-gray-500 text-sm">{plan.period}</span>
+                </div>
+              </div>
+
+              <div className="mb-4 text-xs text-gray-400 italic">
+                {plan.ideal}
               </div>
 
               <ul className="space-y-3 mb-6" role="list">
@@ -171,17 +174,6 @@ export default function Pricing() {
                     ? "bg-gradient-to-r text-white hover:shadow-lg hover:-translate-y-0.5"
                     : "border-2 bg-white hover:bg-gray-50"
                 }`}
-                style={{
-                  background: plan.ctaVariant === "primary"
-                    ? `linear-gradient(135deg, ${plan.gradient.split(" ")[0].replace("from-", "")}, ${plan.gradient.split(" ")[1].replace("to-", "")})`
-                    : undefined,
-                  borderColor: plan.ctaVariant === "outline"
-                    ? plan.gradient.split(" ")[0].replace("from-", "")
-                    : undefined,
-                  color: plan.ctaVariant === "outline"
-                    ? plan.gradient.split(" ")[0].replace("from-", "")
-                    : undefined,
-                }}
                 whileTap={{ scale: 0.98 }}
               >
                 {plan.cta}
@@ -209,13 +201,13 @@ export default function Pricing() {
           className="mt-16 text-center"
         >
           <p className="text-gray-600 mb-4">
-            Besoin d'un accompagnement sur mesure ?{' '}
+            Besoin d'un accompagnement sur mesure ?{" "}
             <a href="#contact" className="text-blue-600 hover:underline font-medium">
               Discutons de votre projet
             </a>
           </p>
-          <p className="text-sm text-gray-500">
-            Chaque offre inclut 14 jours d'essai gratuit · Sans carte bancaire · RGPD by design
+          <p className="text-xs text-gray-400">
+            Tous les prix sont exprimés en FCFA hors taxes (HT). La TVA en vigueur en Côte d'Ivoire (18%) s'applique en supplément.
           </p>
         </motion.div>
       </div>
