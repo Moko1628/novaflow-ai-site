@@ -13,6 +13,7 @@ import {
   Coffee,
   Code,
 } from 'lucide-react';
+import SectionDecoration from './SectionDecoration';
 
 const values = [
   {
@@ -108,8 +109,9 @@ const cardVariants = {
 
 export default function About() {
   return (
-    <section id="a-propos" className="py-24 md:py-32 bg-white">
-      <div className="container mx-auto px-6">
+    <section id="a-propos" className="relative py-24 md:py-32 bg-white overflow-hidden">
+      <SectionDecoration />
+      <div className="relative z-10 container mx-auto px-6">
         {/* Header */}
         <motion.div
           className="text-center mb-16"

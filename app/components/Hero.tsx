@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import HeroBackground from './HeroBackground';
 
 export default function Hero() {
-  // Animation de convergence
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -21,22 +21,26 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gray-50">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated Background */}
+      <HeroBackground />
+
+      {/* Content Layer */}
       <motion.div
-        className="container mx-auto px-6 text-center"
+        className="relative z-10 container mx-auto px-6 text-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.h1 
-          className="text-5xl md:text-7xl font-bold text-gray-900 mb-6"
+          className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg"
           variants={itemVariants}
         >
           Travailler malin, avec NovaFlow AI.
         </motion.h1>
         
         <motion.p 
-          className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto"
+          className="text-xl md:text-2xl text-blue-100/90 mb-10 max-w-2xl mx-auto drop-shadow-md"
           variants={itemVariants}
         >
           Vos processus deviennent fluides, sans stress.
@@ -45,7 +49,7 @@ export default function Hero() {
         <motion.div variants={itemVariants}>
           <a
             href="#offres"
-            className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition"
+            className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-200"
           >
             Découvrir nos offres
             <ArrowRight size={20} />

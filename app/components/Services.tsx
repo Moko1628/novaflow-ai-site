@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import SectionDecoration from './SectionDecoration';
 import { 
   Zap, 
   Brain, 
@@ -91,8 +92,9 @@ const iconVariants = {
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-32 bg-white">
-      <div className="container mx-auto px-6">
+    <section id="services" className="relative py-24 md:py-32 bg-white overflow-hidden">
+      <SectionDecoration />
+      <div className="relative z-10 container mx-auto px-6">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
