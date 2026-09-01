@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import { 
   TrendingUp, 
   Clock, 
@@ -11,47 +11,47 @@ import {
   ArrowRight,
   Star,
   MessageSquare,
-} from 'lucide-react';
+} from "lucide-react";
 
 const stats = [
-  { icon: TrendingUp, value: '87%', label: 'Réduction temps traitement', color: 'text-green-600', bgColor: 'bg-green-50' },
-  { icon: Clock, value: '12h', label: 'Économisées / semaine', color: 'text-blue-600', bgColor: 'bg-blue-50' },
-  { icon: DollarSign, value: '3.2x', label: 'ROI à 6 mois', color: 'text-purple-600', bgColor: 'bg-purple-50' },
-  { icon: Shield, value: '0', label: 'Erreurs critiques', color: 'text-orange-600', bgColor: 'bg-orange-50' },
+  { icon: TrendingUp, value: "87%", label: "Réduction temps traitement", color: "text-green-600", bgColor: "bg-green-50" },
+  { icon: Clock, value: "12h", label: "Économisées / semaine", color: "text-blue-600", bgColor: "bg-blue-50" },
+  { icon: DollarSign, value: "3.2x", label: "ROI à 6 mois", color: "text-purple-600", bgColor: "bg-purple-50" },
+  { icon: Shield, value: "0", label: "Erreurs critiques", color: "text-orange-600", bgColor: "bg-orange-50" },
 ];
 
 const testimonials = [
   {
-    quote: '"NovaFlow AI a transformé notre gestion de factures fournisseurs. Ce qui prenait 3 jours se fait maintenant en 4 heures, sans erreur. L\'équipe a récupéré du temps pour de la vraie valeur ajoutée."',
-    author: 'Marie Kouassi',
-    role: 'Directrice Financière',
-    company: 'Grafitec Industries',
-    avatar: 'MK',
-    gradient: 'from-blue-500 to-cyan-500',
+    quote: `"NovaFlow AI a transformé notre gestion de factures fournisseurs. Ce qui prenait 3 jours se fait maintenant en 4 heures, sans erreur. L'équipe a récupéré du temps pour de la vraie valeur ajoutée."`,
+    author: "Marie Kouassi",
+    role: "Directrice Financière",
+    company: "Grafitec Industries",
+    avatar: "MK",
+    gradient: "from-blue-500 to-cyan-500",
   },
   {
-    quote: '"L\'onboarding a pris 2 semaines, pas 6 mois. Les agents IA ont appris nos règles métier en observant nos experts. C\'est la première fois qu\'une solution s\'adapte à nous, pas l\'inverse."',
-    author: 'Jean-Marc Diallo',
-    role: 'Responsable Opérations',
-    company: 'Grafitec Industries',
-    avatar: 'JD',
-    gradient: 'from-purple-500 to-pink-500',
+    quote: `"L'onboarding a pris 2 semaines, pas 6 mois. Les agents IA ont appris nos règles métier en observant nos experts. C'est la première fois qu'une solution s'adapte à nous, pas l'inverse."`,
+    author: "Jean-Marc Diallo",
+    role: "Responsable Opérations",
+    company: "Grafitec Industries",
+    avatar: "JD",
+    gradient: "from-purple-500 to-pink-500",
   },
   {
-    quote: '"La visibilité temps réel sur nos flux nous a permis de détecter 3 goulets d\'étranglement invisibles avant. On pilote maintenant au lieu de subir."',
-    author: 'Fatou Traoré',
-    role: 'CEO',
-    company: 'Grafitec Industries',
-    avatar: 'FT',
-    gradient: 'from-green-500 to-emerald-500',
+    quote: `"La visibilité temps réel sur nos flux nous a permis de détecter 3 goulets d'étranglement invisibles avant. On pilote maintenant au lieu de subir."`,
+    author: "Fatou Traoré",
+    role: "CEO",
+    company: "Grafitec Industries",
+    avatar: "FT",
+    gradient: "from-green-500 to-emerald-500",
   },
 ];
 
 const benefits = [
-  { icon: Zap, title: 'Déploiement express', desc: 'Production en 2 semaines vs 6-12 mois pour les solutions traditionnelles.' },
-  { icon: Users, title: 'Adoption naturelle', desc: 'Interface familière, pas de formation lourde. Les équipes sont autonomes dès le jour 1.' },
-  { icon: MessageSquare, title: 'Itération continue', desc: 'Les agents s\'améliorent en production. Vos retours = leurs mises à jour automatiques.' },
-  { icon: ArrowRight, title: 'Évolutif sans limite', desc: 'De 10 à 100 000 exécutions/mois sans changer d\'architecture ni d\'équipe.' },
+  { icon: Zap, title: "Déploiement express", desc: "Production en 2 semaines vs 6-12 mois pour les solutions traditionnelles." },
+  { icon: Users, title: "Adoption naturelle", desc: "Interface familière, pas de formation lourde. Les équipes sont autonomes dès le jour 1." },
+  { icon: MessageSquare, title: "Itération continue", desc: "Les agents s'améliorent en production. Vos retours = leurs mises à jour automatiques." },
+  { icon: ArrowRight, title: "Évolutif sans limite", desc: "De 10 à 100 000 exécutions/mois sans changer d'architecture ni d'équipe." },
 ];
 
 const containerVariants = {
@@ -61,7 +61,7 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' as const } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
 };
 
 const cardVariants = {
@@ -92,7 +92,7 @@ export default function SocialProof() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Leader de l\'imprimerie industrielle en Côte d\'Ivoire, Grafitec traite 50 000+ factures/an.
+            Leader de l'imprimerie industrielle en Côte d'Ivoire, Grafitec traite 50 000+ factures/an.
             Voici comment NovaFlow AI a changé la donne.
           </p>
         </motion.div>
@@ -103,7 +103,7 @@ export default function SocialProof() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
+          viewport={{ once: true, margin: "-50px" }}
         >
           {stats.map((stat, index) => {
             const Icon = stat.icon;
@@ -132,7 +132,7 @@ export default function SocialProof() {
           transition={{ duration: 0.6 }}
         >
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-10">
-            Ce qu\'en disent leurs équipes
+            Ce qu'en disent leurs équipes
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -145,7 +145,7 @@ export default function SocialProof() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
-                    style={{ background: `linear-gradient(135deg, ${testimonial.gradient.split(' ')[0].replace('from-', '')}, ${testimonial.gradient.split(' ')[1].replace('to-', '')})` }}
+                    style={{ background: `linear-gradient(135deg, ${testimonial.gradient.split(" ")[0].replace("from-", "")}, ${testimonial.gradient.split(" ")[1].replace("to-", "")})` }}
                   >
                     {testimonial.avatar}
                   </div>

@@ -1,30 +1,30 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import SectionDecoration from './SectionDecoration';
-import { Mail, MapPin, Phone, ArrowRight, ExternalLink } from 'lucide-react';
+import { motion } from "framer-motion";
+import SectionDecoration from "./SectionDecoration";
+import { Mail, MapPin, Phone, ArrowRight, ExternalLink } from "lucide-react";
 
 const contactMethods = [
   {
     icon: Mail,
-    label: 'Email',
-    value: 'hello@novaflow-ai.com',
-    href: 'mailto:hello@novaflow-ai.com',
-    color: 'from-blue-500 to-cyan-500',
+    label: "Email",
+    value: "hello@novaflow-ai.com",
+    href: "mailto:hello@novaflow-ai.com",
+    color: "from-blue-500 to-cyan-500",
   },
   {
     icon: Phone,
-    label: 'Téléphone',
-    value: '+225 07 07 07 07',
-    href: 'tel:+22507070707',
-    color: 'from-purple-500 to-pink-500',
+    label: "Téléphone",
+    value: "+225 07 07 07 07",
+    href: "tel:+22507070707",
+    color: "from-purple-500 to-pink-500",
   },
   {
     icon: MapPin,
-    label: 'Adresse',
-    value: 'Abidjan, Côte d\'Ivoire',
-    href: 'https://maps.google.com',
-    color: 'from-green-500 to-emerald-500',
+    label: "Adresse",
+    value: "Abidjan, Côte d'Ivoire",
+    href: "https://maps.google.com",
+    color: "from-green-500 to-emerald-500",
   },
 ];
 
@@ -101,7 +101,7 @@ export default function Contact() {
                   <a key={method.label} href={method.href} className="flex items-center gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-100 hover:border-gray-200 hover:shadow-md transition-all duration-300 group">
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center text-white shrink-0"
-                      style={{ background: `linear-gradient(135deg, ${method.color.split(' ')[0].replace('from-', '')}, ${method.color.split(' ')[1].replace('to-', '')})` }}
+                      style={{ background: `linear-gradient(135deg, ${method.color.split(" ")[0].replace("from-", "")}, ${method.color.split(" ")[1].replace("to-", "")})` }}
                     >
                       <Icon className="w-5 h-5" />
                     </div>
@@ -115,7 +115,7 @@ export default function Contact() {
               })}
             </div>
 
-            <div className="mt-6 p-6 rounded-3xl text-center text-white" style={{ background: 'linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #db2777 100%)' }}>
+            <div className="mt-6 p-6 rounded-3xl text-center text-white" style={{ background: "linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #db2777 100%)" }}>
               <h4 className="font-bold text-lg mb-2">Vous préférez un appel ?</h4>
               <p className="text-blue-100 text-sm mb-4">
                 Réservez un créneau de 15 minutes avec l'un de nos experts pour un diagnostic rapide et gratuit.

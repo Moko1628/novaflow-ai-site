@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import { 
   Zap, 
   Brain, 
@@ -15,83 +15,83 @@ import {
   Rocket,
   Settings,
   Eye,
-} from 'lucide-react';
+} from "lucide-react";
 
 const steps = [
   {
-    number: '01',
+    number: "01",
     icon: Sparkles,
-    title: 'Découverte & Cadrage',
-    description: 'Nous identifions vos processus les plus coûteux en temps et à forte valeur ajoutée. Audit gratuit, sans engagement.',
+    title: "Découverte & Cadrage",
+    description: "Nous identifions vos processus les plus coûteux en temps et à forte valeur ajoutée. Audit gratuit, sans engagement.",
     details: [
-      'Atelier 2h avec vos experts métier',
-      'Cartographie des flux actuels',
-      'Identification des quick wins',
-      'Projet pilote défini (2-4 semaines)',
+      "Atelier 2h avec vos experts métier",
+      "Cartographie des flux actuels",
+      "Identification des quick wins",
+      "Projet pilote défini (2-4 semaines)",
     ],
-    visual: 'workflow-audit',
+    visual: "workflow-audit",
   },
   {
-    number: '02',
+    number: "02",
     icon: Brain,
-    title: 'Entraînement des agents IA',
-    description: 'Nos agents observent vos experts, apprennent vos règles métier, vos exceptions, votre langage. Aucune programmation requise.',
+    title: "Entraînement des agents IA",
+    description: "Nos agents observent vos experts, apprennent vos règles métier, vos exceptions, votre langage. Aucune programmation requise.",
     details: [
-      'Apprentissage par démonstration (shadowing)',
-      'Modélisation des règles explicites & implicites',
-      'Gestion des cas limites & exceptions',
-      'Validation humaine continue (human-in-the-loop)',
+      "Apprentissage par démonstration (shadowing)",
+      "Modélisation des règles explicites & implicites",
+      "Gestion des cas limites & exceptions",
+      "Validation humaine continue (human-in-the-loop)",
     ],
-    visual: 'ai-training',
+    visual: "ai-training",
   },
   {
-    number: '03',
+    number: "03",
     icon: Workflow,
-    title: 'Construction du workflow',
-    description: 'Assemblage visuel du processus : déclencheurs, étapes, décisions, intégrations. Interface no-code, modifiable à chaud.',
+    title: "Construction du workflow",
+    description: "Assemblage visuel du processus : déclencheurs, étapes, décisions, intégrations. Interface no-code, modifiable à chaud.",
     details: [
-      'Canvas drag-and-drop intuitif',
-      'Connecteurs natifs (ERP, CRM, Email, API)',
-      'Logiques conditionnelles & boucles',
-      'Tests unitaires & d\'intégration intégrés',
+      "Canvas drag-and-drop intuitif",
+      "Connecteurs natifs (ERP, CRM, Email, API)",
+      "Logiques conditionnelles & boucles",
+      "Tests unitaires & d'intégration intégrés",
     ],
-    visual: 'workflow-builder',
+    visual: "workflow-builder",
   },
   {
-    number: '04',
+    number: "04",
     icon: Zap,
-    title: 'Déploiement & Mise en production',
-    description: 'Lancement progressif : ombre (parallèle), puis canari (5%), puis 100%. Rollback instantané si besoin.',
+    title: "Déploiement & Mise en production",
+    description: "Lancement progressif : ombre (parallèle), puis canari (5%), puis 100%. Rollback instantané si besoin.",
     details: [
-      'Mode ombre : IA propose, humain valide',
-      'Montée en charge progressive (canary)',
-      'Monitoring temps réel & alertes',
-      'Basculement production en 1 clic',
+      "Mode ombre : IA propose, humain valide",
+      "Montée en charge progressive (canary)",
+      "Monitoring temps réel & alertes",
+      "Basculement production en 1 clic",
     ],
-    visual: 'deployment',
+    visual: "deployment",
   },
   {
-    number: '05',
+    number: "05",
     icon: BarChart3,
-    title: 'Pilotage & Amélioration continue',
-    description: 'Dashboard unifié pour suivre les performances, détecter les anomalies, faire évoluer les agents. L\'IA s\'améliore seule.',
+    title: "Pilotage & Amélioration continue",
+    description: "Dashboard unifié pour suivre les performances, détecter les anomalies, faire évoluer les agents. L'IA s'améliore seule.",
     details: [
-      'KPIs temps réel : volume, temps, erreurs, coûts',
-      'Détection d\'anomalies par IA',
-      'Suggestions d\'optimisation automatiques',
-      'Réentraînement continu (continual learning)',
+      "KPIs temps réel : volume, temps, erreurs, coûts",
+      "Détection d'anomalies par IA",
+      "Suggestions d'optimisation automatiques",
+      "Réentraînement continu (continual learning)",
     ],
-    visual: 'monitoring',
+    visual: "monitoring",
   },
 ];
 
 const benefits = [
-  { icon: CheckCircle, title: 'Zéro code', desc: 'Interface visuelle, accessible aux métiers.' },
-  { icon: Shield, title: 'Sécurisé by design', desc: 'Chiffrement, audit trail, RBAC, RGPD.' },
-  { icon: Rocket, title: 'Time-to-value < 30 jours', desc: 'Premier workflow en production en 2-4 semaines.' },
-  { icon: Settings, title: 'Évolutif à l\'infini', desc: 'De 1 à 1000+ workflows sans refonte.' },
-  { icon: Users, title: 'Collaboratif', desc: 'Équipes métiers & IT travaillent ensemble.' },
-  { icon: Eye, title: 'Observabilité totale', desc: 'Chaque décision tracée, explicable, auditable.' },
+  { icon: CheckCircle, title: "Zéro code", desc: "Interface visuelle, accessible aux métiers." },
+  { icon: Shield, title: "Sécurisé by design", desc: "Chiffrement, audit trail, RBAC, RGPD." },
+  { icon: Rocket, title: "Time-to-value < 30 jours", desc: "Premier workflow en production en 2-4 semaines." },
+  { icon: Settings, title: "Évolutif à l'infini", desc: "De 1 à 1000+ workflows sans refonte." },
+  { icon: Users, title: "Collaboratif", desc: "Équipes métiers & IT travaillent ensemble." },
+  { icon: Eye, title: "Observabilité totale", desc: "Chaque décision tracée, explicable, auditable." },
 ];
 
 export default function HowItWorks() {
@@ -110,7 +110,7 @@ export default function HowItWorks() {
             Comment ça marche ?
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-              En 5 étapes, de l\'idée à l\'autonome
+              En 5 étapes, de l'idée à l'autonome
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -132,29 +132,29 @@ export default function HowItWorks() {
                 key={step.number}
                 initial={{ opacity: 0, x: isEven ? -60 : 60 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative mb-20 ${isEven ? 'pr-20 md:pr-32 text-right' : 'pl-20 md:pl-32'}`}
-                style={{ width: '50%', marginLeft: isEven ? 'auto' : '0' }}
+                className={`relative mb-20 ${isEven ? "pr-20 md:pr-32 text-right" : "pl-20 md:pl-32"}`}
+                style={{ width: "50%", marginLeft: isEven ? "auto" : "0" }}
               >
                 {/* Circle on timeline */}
                 <motion.div
                   className="absolute top-4 w-4 h-4 rounded-full border-4 border-white z-10 transition-all duration-300"
                   style={{ 
-                    left: isEven ? 'calc(50% - 10px)' : 'calc(50% - 10px)',
+                    left: isEven ? "calc(50% - 10px)" : "calc(50% - 10px)",
                     background: `linear-gradient(135deg, #3b82f6, #a855f7)`,
-                    boxShadow: '0 0 0 4px rgba(59, 130, 246, 0.2)',
+                    boxShadow: "0 0 0 4px rgba(59, 130, 246, 0.2)",
                   }}
                   whileInView={{ scale: [1, 1.3, 1] }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1.5, repeat: Infinity, repeatType: 'reverse' }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
                 >
                 </motion.div>
 
                 {/* Card */}
                 <motion.div
                   className={`relative p-6 md:p-8 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all duration-300 ${
-                    isEven ? 'mr-4' : 'ml-4'
+                    isEven ? "mr-4" : "ml-4"
                   }`}
                   whileHover={{ y: -4 }}
                 >

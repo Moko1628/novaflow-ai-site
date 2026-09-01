@@ -1,72 +1,72 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Check, HelpCircle } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Check, HelpCircle } from "lucide-react";
 
 const plans = [
   {
-    name: 'Starter',
-    price: '[Prix à définir]',
-    period: 'FCFA/mois',
-    description: 'L\'essentiel pour automatiser vos premiers processus et valider le concept.',
+    name: "Starter",
+    price: "[Prix à définir]",
+    period: "FCFA/mois",
+    description: "L'essentiel pour automatiser vos premiers processus et valider le concept.",
     features: [
-      '3 workflows actifs',
-      '1 000 exécutions/mois',
-      '1 agent IA spécialisé',
-      'Connecteurs essentiels (Email, Google, API)',
-      'Logs & monitoring basique',
-      'Support email (réponse sous 48h)',
-      'Hébergement NovaFlow Cloud',
+      "3 workflows actifs",
+      "1 000 exécutions/mois",
+      "1 agent IA spécialisé",
+      "Connecteurs essentiels (Email, Google, API)",
+      "Logs & monitoring basique",
+      "Support email (réponse sous 48h)",
+      "Hébergement NovaFlow Cloud",
     ],
-    cta: 'Choisir Starter',
-    ctaVariant: 'outline',
+    cta: "Choisir Starter",
+    ctaVariant: "outline",
     popular: false,
-    gradient: 'from-gray-500 to-gray-600',
-    bgGradient: 'from-gray-50 to-gray-100',
+    gradient: "from-gray-500 to-gray-600",
+    bgGradient: "from-gray-50 to-gray-100",
   },
   {
-    name: 'Pro',
-    price: '[Prix à définir]',
-    period: 'FCFA/mois',
-    description: 'Pour les équipes qui automatisent leurs processus critiques.',
+    name: "Pro",
+    price: "[Prix à définir]",
+    period: "FCFA/mois",
+    description: "Pour les équipes qui automatisent leurs processus critiques.",
     features: [
-      'Workflows illimités',
-      '10 000 exécutions/mois',
-      '5 agents IA spécialisés',
-      'Analytics avancées & alertes',
-      'Intégrations premium incluses',
-      'Support email prioritaire (24h)',
-      'Rôles & permissions équipe',
-      'API & webhooks',
+      "Workflows illimités",
+      "10 000 exécutions/mois",
+      "5 agents IA spécialisés",
+      "Analytics avancées & alertes",
+      "Intégrations premium incluses",
+      "Support email prioritaire (24h)",
+      "Rôles & permissions équipe",
+      "API & webhooks",
     ],
-    cta: 'Lancer mon essai Pro',
-    ctaVariant: 'primary',
+    cta: "Lancer mon essai Pro",
+    ctaVariant: "primary",
     popular: true,
-    gradient: 'from-blue-500 to-cyan-500',
-    bgGradient: 'from-blue-50 to-cyan-50',
+    gradient: "from-blue-500 to-cyan-500",
+    bgGradient: "from-blue-50 to-cyan-50",
   },
   {
-    name: 'Business',
-    price: 'Sur devis',
-    period: '',
-    description: 'Pour les organisations aux exigences de sécurité et d\'échelle élevées.',
+    name: "Business",
+    price: "Sur devis",
+    period: "",
+    description: "Pour les organisations aux exigences de sécurité et d'échelle élevées.",
     features: [
-      'Tout le plan Pro',
-      'Exécutions illimitées',
-      'Agents IA illimités & personnalisés',
-      'Déploiement on-premise / cloud privé',
-      'SLA 99.9% avec pénalités',
-      'Support 24/7 avec téléphone',
-      'Account manager dédié',
-      'SSO (SAML/OIDC) & audit complet',
-      'Formation & onboarding sur site',
-      'Contrats & facturation adaptés',
+      "Tout le plan Pro",
+      "Exécutions illimitées",
+      "Agents IA illimités & personnalisés",
+      "Déploiement on-premise / cloud privé",
+      "SLA 99.9% avec pénalités",
+      "Support 24/7 avec téléphone",
+      "Account manager dédié",
+      "SSO (SAML/OIDC) & audit complet",
+      "Formation & onboarding sur site",
+      "Contrats & facturation adaptés",
     ],
-    cta: 'Contacter le commercial',
-    ctaVariant: 'outline',
+    cta: "Contacter le commercial",
+    ctaVariant: "outline",
     popular: false,
-    gradient: 'from-purple-500 to-pink-500',
-    bgGradient: 'from-purple-50 to-pink-50',
+    gradient: "from-purple-500 to-pink-500",
+    bgGradient: "from-purple-50 to-pink-50",
   },
 ];
 
@@ -77,13 +77,13 @@ const containerVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: 'easeOut' as const } },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: "easeOut" as const } },
   hover: { y: -8, transition: { duration: 0.3 } },
 };
 
 const badgeVariants = {
   hidden: { opacity: 0, scale: 0.8, y: -10 },
-  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5, delay: 0.2, ease: 'easeOut' as const } },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5, delay: 0.2, ease: "easeOut" as const } },
 };
 
 export default function Pricing() {
@@ -114,7 +114,7 @@ export default function Pricing() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           {plans.map((plan, index) => (
             <motion.article
@@ -123,15 +123,15 @@ export default function Pricing() {
               whileHover="hover"
               className={`relative rounded-2xl p-8 bg-white border transition-all duration-300 ${
                 plan.popular
-                  ? 'border-2 shadow-xl ring-4 ring-blue-500/20'
-                  : 'border-gray-200 hover:border-gray-300 hover:shadow-lg'
+                  ? "border-2 shadow-xl ring-4 ring-blue-500/20"
+                  : "border-gray-200 hover:border-gray-300 hover:shadow-lg"
               } ${plan.bgGradient}`}
             >
               {plan.popular && (
                 <motion.div
                   variants={badgeVariants}
                   className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-white"
-                  style={{ background: `linear-gradient(135deg, ${plan.gradient.split(' ')[0].replace('from-', '')}, ${plan.gradient.split(' ')[1].replace('to-', '')})` }}
+                  style={{ background: `linear-gradient(135deg, ${plan.gradient.split(" ")[0].replace("from-", "")}, ${plan.gradient.split(" ")[1].replace("to-", "")})` }}
                 >
                   Le plus choisi
                 </motion.div>
@@ -167,19 +167,19 @@ export default function Pricing() {
 
               <motion.button
                 className={`w-full py-3 px-6 rounded-xl font-semibold text-sm transition-all duration-200 ${
-                  plan.ctaVariant === 'primary'
-                    ? 'bg-gradient-to-r text-white hover:shadow-lg hover:-translate-y-0.5'
-                    : 'border-2 bg-white hover:bg-gray-50'
+                  plan.ctaVariant === "primary"
+                    ? "bg-gradient-to-r text-white hover:shadow-lg hover:-translate-y-0.5"
+                    : "border-2 bg-white hover:bg-gray-50"
                 }`}
                 style={{
-                  background: plan.ctaVariant === 'primary'
-                    ? `linear-gradient(135deg, ${plan.gradient.split(' ')[0].replace('from-', '')}, ${plan.gradient.split(' ')[1].replace('to-', '')})`
+                  background: plan.ctaVariant === "primary"
+                    ? `linear-gradient(135deg, ${plan.gradient.split(" ")[0].replace("from-", "")}, ${plan.gradient.split(" ")[1].replace("to-", "")})`
                     : undefined,
-                  borderColor: plan.ctaVariant === 'outline'
-                    ? plan.gradient.split(' ')[0].replace('from-', '')
+                  borderColor: plan.ctaVariant === "outline"
+                    ? plan.gradient.split(" ")[0].replace("from-", "")
                     : undefined,
-                  color: plan.ctaVariant === 'outline'
-                    ? plan.gradient.split(' ')[0].replace('from-', '')
+                  color: plan.ctaVariant === "outline"
+                    ? plan.gradient.split(" ")[0].replace("from-", "")
                     : undefined,
                 }}
                 whileTap={{ scale: 0.98 }}
@@ -209,7 +209,7 @@ export default function Pricing() {
           className="mt-16 text-center"
         >
           <p className="text-gray-600 mb-4">
-            Besoin d\'un accompagnement sur mesure ?{' '}
+            Besoin d'un accompagnement sur mesure ?{' '}
             <a href="#contact" className="text-blue-600 hover:underline font-medium">
               Discutons de votre projet
             </a>

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import SectionDecoration from './SectionDecoration';
+import { motion } from "framer-motion";
+import SectionDecoration from "./SectionDecoration";
 import { 
   Zap, 
   Brain, 
@@ -10,50 +10,50 @@ import {
   BarChart3, 
   Users,
   ArrowRight 
-} from 'lucide-react';
+} from "lucide-react";
 
 const services = [
   {
     icon: Zap,
-    title: 'Automatisation intelligente',
-    description: 'Transformez vos tâches répétitives en workflows autonomes. L\'IA apprend de vos processus et les optimise en continu.',
-    gradient: 'from-blue-500 to-cyan-500',
-    bgGradient: 'from-blue-50 to-cyan-50',
+    title: "Automatisation intelligente",
+    description: "Transformez vos tâches répétitives en workflows autonomes. L'IA apprend de vos processus et les optimise en continu.",
+    gradient: "from-blue-500 to-cyan-500",
+    bgGradient: "from-blue-50 to-cyan-50",
   },
   {
     icon: Brain,
-    title: 'IA décisionnelle',
-    description: 'Des agents qui analysent, décident et agissent. Plus de simples chatbots : des systèmes qui pilotent vraiment vos opérations.',
-    gradient: 'from-purple-500 to-pink-500',
-    bgGradient: 'from-purple-50 to-pink-50',
+    title: "IA décisionnelle",
+    description: "Des agents qui analysent, décident et agissent. Plus de simples chatbots : des systèmes qui pilotent vraiment vos opérations.",
+    gradient: "from-purple-500 to-pink-500",
+    bgGradient: "from-purple-50 to-pink-50",
   },
   {
     icon: Workflow,
-    title: 'Orchestration multi-agents',
-    description: 'Coordonnez plusieurs IA spécialisées qui collaborent sur vos processus complexes, comme une vraie équipe.',
-    gradient: 'from-green-500 to-emerald-500',
-    bgGradient: 'from-green-50 to-emerald-50',
+    title: "Orchestration multi-agents",
+    description: "Coordonnez plusieurs IA spécialisées qui collaborent sur vos processus complexes, comme une vraie équipe.",
+    gradient: "from-green-500 to-emerald-500",
+    bgGradient: "from-green-50 to-emerald-50",
   },
   {
     icon: Shield,
-    title: 'Sécurité & conformité',
-    description: 'Données chiffrées, audit trail complet, hébergement souverain. Vos processus restent vôtres, toujours.',
-    gradient: 'from-orange-500 to-red-500',
-    bgGradient: 'from-orange-50 to-red-50',
+    title: "Sécurité & conformité",
+    description: "Données chiffrées, audit trail complet, hébergement souverain. Vos processus restent vôtres, toujours.",
+    gradient: "from-orange-500 to-red-500",
+    bgGradient: "from-orange-50 to-red-50",
   },
   {
     icon: BarChart3,
-    title: 'Analytics temps réel',
-    description: 'Visualisez la performance de chaque workflow. Identifiez les goulots, mesurez le ROI, itérez vite.',
-    gradient: 'from-indigo-500 to-blue-500',
-    bgGradient: 'from-indigo-50 to-blue-50',
+    title: "Analytics temps réel",
+    description: "Visualisez la performance de chaque workflow. Identifiez les goulots, mesurez le ROI, itérez vite.",
+    gradient: "from-indigo-500 to-blue-500",
+    bgGradient: "from-indigo-50 to-blue-50",
   },
   {
     icon: Users,
-    title: 'Collaboration homme-IA',
-    description: 'L\'IA propose, l\'humain valide. Interface unifiée pour superviser, corriger et améliorer vos automatisations.',
-    gradient: 'from-teal-500 to-cyan-500',
-    bgGradient: 'from-teal-50 to-cyan-50',
+    title: "Collaboration homme-IA",
+    description: "L'IA propose, l'humain valide. Interface unifiée pour superviser, corriger et améliorer vos automatisations.",
+    gradient: "from-teal-500 to-cyan-500",
+    bgGradient: "from-teal-50 to-cyan-50",
   },
 ];
 
@@ -71,12 +71,12 @@ const cardVariants = {
     opacity: 1, 
     y: 0, 
     scale: 1,
-    transition: { duration: 0.6, ease: 'easeOut' as const }
+    transition: { duration: 0.6, ease: "easeOut" as const }
   },
   hover: { 
     y: -8, 
     scale: 1.02,
-    transition: { duration: 0.3, ease: 'easeOut' as const }
+    transition: { duration: 0.3, ease: "easeOut" as const }
   },
 };
 
@@ -86,7 +86,7 @@ const iconVariants = {
     opacity: 1, 
     scale: 1, 
     rotate: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const }
+    transition: { duration: 0.5, ease: "easeOut" as const }
   },
 };
 
@@ -106,7 +106,7 @@ export default function Services() {
             Nos services
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Une suite complète pour faire passer vos opérations du manuel à l\'autonome,
+            Une suite complète pour faire passer vos opérations du manuel à l'autonome,
             sans complexité technique.
           </p>
         </motion.div>
@@ -116,7 +116,7 @@ export default function Services() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           {services.map((service, index) => {
             const Icon = service.icon;
@@ -128,13 +128,13 @@ export default function Services() {
                 className={`group relative p-8 rounded-2xl border bg-gradient-to-br ${service.bgGradient} border-gray-100 hover:border-gray-200 hover:shadow-xl transition-all duration-300`}
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-                  style={{ background: `linear-gradient(135deg, ${service.gradient.split(' ')[0].replace('from-', '')}15, ${service.gradient.split(' ')[1].replace('to-', '')}15)` }}
+                  className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl"
+                  variants={cardVariants}
                 />
                 
                 <motion.div
-                  className="relative w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-                  style={{ background: `linear-gradient(135deg, ${service.gradient.split(' ')[0].replace('from-', '')}, ${service.gradient.split(' ')[1].replace('to-', '')})` }}
+                  className="relative w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br text-white"
+                  style={{ background: `linear-gradient(135deg, ${service.gradient.split(" ")[0].replace("from-", "")}, ${service.gradient.split(" ")[1].replace("to-", "")})` }}
                   variants={iconVariants}
                 >
                   <Icon className="w-7 h-7 text-white" strokeWidth={2} />
@@ -149,8 +149,7 @@ export default function Services() {
                 </p>
 
                 <motion.button
-                  className="relative z-10 inline-flex items-center gap-2 text-sm font-medium transition-colors"
-                  style={{ color: service.gradient.split(' ')[0].replace('from-', '') }}
+                  className="relative z-10 inline-flex items-center gap-2 text-sm font-medium transition-colors text-blue-600"
                   whileHover={{ x: 4 }}
                 >
                   En savoir plus
