@@ -145,7 +145,7 @@ export default function SocialProof() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
-                    style={{ background: `linear-gradient(135deg, ${testimonial.gradient.split(' ')[0].replace('from-', '')}, ${testimonial.gradient.split(' ')[2].replace('to-', '')})` }}
+                    style={{ background: `linear-gradient(135deg, ${testimonial.gradient.split(' ')[0].replace('from-', '')}, ${testimonial.gradient.split(' ')[1].replace('to-', '')})` }}
                   >
                     {testimonial.avatar}
                   </div>

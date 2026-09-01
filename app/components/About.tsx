@@ -205,7 +205,7 @@ export default function About() {
                   className="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-white"
-                    style={{ background: `linear-gradient(135deg, ${value.color.split(' ')[0].replace('from-', '')}, ${value.color.split(' ')[2].replace('to-', '')})` }}
+                    style={{ background: `linear-gradient(135deg, ${value.color.split(' ')[0].replace('from-', '')}, ${value.color.split(' ')[1].replace('to-', '')})` }}
                   >
                     <Icon className="w-6 h-6" />
                   </div>
@@ -244,7 +244,7 @@ export default function About() {
                 className="p-6 rounded-2xl bg-white border border-gray-100 hover:border-gray-200 hover:shadow-xl transition-all duration-300 text-center"
               >
                 <div className="w-20 h-20 rounded-2xl mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold"
-                  style={{ background: `linear-gradient(135deg, ${member.gradient.split(' ')[0].replace('from-', '')}, ${member.gradient.split(' ')[2].replace('to-', '')})` }}
+                  style={{ background: `linear-gradient(135deg, ${member.gradient.split(' ')[0].replace('from-', '')}, ${member.gradient.split(' ')[1].replace('to-', '')})` }}
                 >
                   {member.avatar}
                 </div>

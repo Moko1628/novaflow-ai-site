@@ -99,7 +99,7 @@ export default function Contact() {
                   <a key={method.label} href={method.href} className="flex items-center gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-100 hover:border-gray-200 hover:shadow-md transition-all duration-300 group">
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center text-white shrink-0"
-                      style={{ background: `linear-gradient(135deg, ${method.color.split(' ')[0].replace('from-', '')}, ${method.color.split(' ')[2].replace('to-', '')})` }}
+                      style={{ background: `linear-gradient(135deg, ${method.color.split(' ')[0].replace('from-', '')}, ${method.color.split(' ')[1].replace('to-', '')})` }}
                     >
                       <Icon className="w-5 h-5" />
                     </div>

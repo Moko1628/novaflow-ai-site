@@ -143,7 +143,7 @@ export default function Pricing() {
                 <motion.div
                   variants={badgeVariants}
                   className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-white"
-                  style={{ background: `linear-gradient(135deg, ${plan.gradient.split(' ')[0].replace('from-', '')}, ${plan.gradient.split(' ')[2].replace('to-', '')})` }}
+                  style={{ background: `linear-gradient(135deg, ${plan.gradient.split(' ')[0].replace('from-', '')}, ${plan.gradient.split(' ')[1].replace('to-', '')})` }}
                 >
                   Le plus choisi
                 </motion.div>
@@ -198,7 +198,7 @@ export default function Pricing() {
                 }`}
                 style={{
                   background: plan.ctaVariant === 'primary'
-                    ? `linear-gradient(135deg, ${plan.gradient.split(' ')[0].replace('from-', '')}, ${plan.gradient.split(' ')[2].replace('to-', '')})`
+                    ? `linear-gradient(135deg, ${plan.gradient.split(' ')[0].replace('from-', '')}, ${plan.gradient.split(' ')[1].replace('to-', '')})`
                     : undefined,
                   borderColor: plan.ctaVariant === 'outline'
                     ? plan.gradient.split(' ')[0].replace('from-', '')

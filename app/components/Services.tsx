@@ -127,12 +127,12 @@ export default function Services() {
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-                  style={{ background: `linear-gradient(135deg, ${service.gradient.split(' ')[0].replace('from-', '')}15, ${service.gradient.split(' ')[2].replace('to-', '')}15)` }}
+                  style={{ background: `linear-gradient(135deg, ${service.gradient.split(' ')[0].replace('from-', '')}15, ${service.gradient.split(' ')[1].replace('to-', '')}15)` }}
                 />
                 
                 <motion.div
                   className="relative w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-                  style={{ background: `linear-gradient(135deg, ${service.gradient.split(' ')[0].replace('from-', '')}, ${service.gradient.split(' ')[2].replace('to-', '')})` }}
+                  style={{ background: `linear-gradient(135deg, ${service.gradient.split(' ')[0].replace('from-', '')}, ${service.gradient.split(' ')[1].replace('to-', '')})` }}
                   variants={iconVariants}
                 >
                   <Icon className="w-7 h-7 text-white" strokeWidth={2} />
