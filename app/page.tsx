@@ -2,11 +2,14 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Services from "./components/Services";
 import HowItWorks from "./components/HowItWorks";
+import ROICalculator from "./components/ROICalculator";
+import WorkflowSimulator from "./components/WorkflowSimulator";
 import Pricing from "./components/Pricing";
 import SocialProof from "./components/SocialProof";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ChatWidget from "./components/ChatWidget";
+import ClientPortal from "./components/ClientPortal";
 
 export default function Home() {
   return (
@@ -15,11 +18,14 @@ export default function Home() {
       <About />
       <Services />
       <HowItWorks />
+      <ROICalculator />
+      <WorkflowSimulator />
       <Pricing />
       <SocialProof />
       <Contact />
       <Footer />
       <ChatWidget />
+      <ClientPortal />
     </main>
   );
 }
