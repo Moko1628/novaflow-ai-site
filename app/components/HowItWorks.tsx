@@ -96,7 +96,7 @@ const benefits = [
 
 export default function HowItWorks() {
   return (
-    <section id="comment-ca-marche" className="py-24 md:py-32 bg-gray-50">
+    <section id="comment-ca-marche" className="relative py-24 md:py-32 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div

@@ -65,7 +65,7 @@ export default function ROICalculator() {
   const paybackMonths = monthlyMoneySaved > 0 ? Math.ceil(selectedPack.setup / monthlyMoneySaved) : 99;
 
   return (
-    <section id="roi" className="py-24 md:py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950">
+    <section id="roi" className="relative py-24 md:py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.div
           className="text-center mb-16"
