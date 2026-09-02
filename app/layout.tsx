@@ -14,9 +14,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NovaFlow AI — Travailler malin",
+  title: "NovaFlow AI — Automatisation Intelligente & Agents IA",
   description:
-    "NovaFlow AI automatise vos processus métier avec des agents IA intelligents. Zéro code, déploiement en 30 jours, ROI prouvé.",
+    "NovaFlow AI automatise vos processus métier avec des agents IA sur mesure. Gagnez en productivité, réduisez vos coûts et accélérez votre croissance.",
+  keywords: ["NovaFlow AI", "Intelligence Artificielle", "Automatisation", "Agents IA", "Workflow", "Productivité B2B", "Afrique"],
+  authors: [{ name: "NovaFlow AI" }],
+  openGraph: {
+    title: "NovaFlow AI — Automatisation Intelligente & Agents IA",
+    description: "Automatisez vos processus métier avec des agents IA sur mesure. Zéro complexité, ROI garanti.",
+    url: "https://novaflow-ai.com",
+    siteName: "NovaFlow AI",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NovaFlow AI — Automatisation Intelligente",
+    description: "Automatisez vos processus métier avec des agents IA sur mesure.",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

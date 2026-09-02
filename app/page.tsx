@@ -6,10 +6,12 @@ import ROICalculator from "./components/ROICalculator";
 import WorkflowSimulator from "./components/WorkflowSimulator";
 import Pricing from "./components/Pricing";
 import SocialProof from "./components/SocialProof";
+import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ChatWidget from "./components/ChatWidget";
 import ClientPortal from "./components/ClientPortal";
+import QuickContact from "./components/QuickContact";
 
 export default function Home() {
   return (
@@ -22,10 +24,12 @@ export default function Home() {
       <WorkflowSimulator />
       <Pricing />
       <SocialProof />
+      <FAQ />
       <Contact />
       <Footer />
       <ChatWidget />
       <ClientPortal />
+      <QuickContact />
     </main>
   );
 }

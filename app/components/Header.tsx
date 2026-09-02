@@ -8,6 +8,7 @@ const nav = [
   { label: 'Services', href: '#services' },
   { label: 'Comment ça marche', href: '#comment-ca-marche' },
   { label: 'Tarifs', href: '#tarifs' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'À propos', href: '#a-propos' },
 ];
 

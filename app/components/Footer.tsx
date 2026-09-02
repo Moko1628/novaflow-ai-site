@@ -1,3 +1,5 @@
+import LegalModal from "./LegalModal";
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-400 py-16 border-t border-gray-800">
@@ -17,6 +19,7 @@ export default function Footer() {
             <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
             <li><a href="#comment-ca-marche" className="hover:text-white transition-colors">Comment ça marche</a></li>
             <li><a href="#tarifs" className="hover:text-white transition-colors">Offres &amp; Tarifs</a></li>
+            <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
             <li><a href="#a-propos" className="hover:text-white transition-colors">À propos</a></li>
             <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
           </ul>
@@ -24,12 +27,12 @@ export default function Footer() {
 
         <div>
           <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Légal &amp; Sécurité</h4>
-          <ul className="space-y-2.5 text-sm">
-            <li><span className="text-gray-500 cursor-not-allowed">Mentions légales</span></li>
-            <li><span className="text-gray-500 cursor-not-allowed">Politique de confidentialité</span></li>
-            <li><span className="text-gray-500 cursor-not-allowed">Conformité RGPD</span></li>
-            <li><span className="text-gray-500 cursor-not-allowed">Sécurité des données</span></li>
-          </ul>
+          <div className="space-y-2.5">
+            <LegalModal />
+            <p className="text-xs text-gray-500 pt-2">
+              Conformité stricte des données et chiffrement de bout en bout.
+            </p>
+          </div>
         </div>
 
         <div>

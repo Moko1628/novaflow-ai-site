@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import SectionDecoration from "./SectionDecoration";
-import { Mail, MapPin, Phone, ArrowRight, ExternalLink } from "lucide-react";
+import { Mail, MapPin, Phone, ArrowRight, ExternalLink, CheckCircle2 } from "lucide-react";
 
 const contactMethods = [
   {
@@ -29,6 +30,25 @@ const contactMethods = [
 ];
 
 export default function Contact() {
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    company: "",
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+    }, 1000);
+  };
+
   return (
     <section id="contact" className="relative py-24 md:py-32 bg-white overflow-hidden">
       <SectionDecoration />
@@ -60,30 +80,85 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-xl font-bold text-gray-900 mb-6">Envoyez-nous un message</h3>
-            <form className="space-y-5">
-              <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1.5">Entreprise</label>
-                <input id="company" type="text" className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" placeholder="Grafitec Industries" />
+            {submitted ? (
+              <div className="p-8 rounded-2xl bg-green-50 border border-green-200 text-center space-y-4">
+                <CheckCircle2 className="w-12 h-12 text-green-600 mx-auto" />
+                <h4 className="text-lg font-bold text-green-900">Message envoyé avec succès !</h4>
+                <p className="text-green-700 text-sm">
+                  Merci {formData.name}. Notre équipe technique vous contactera sous 24h à l'adresse {formData.email}.
+                </p>
+                <button
+                  onClick={() => {
+                    setSubmitted(false);
+                    setFormData({ company: "", name: "", email: "", message: "" });
+                  }}
+                  className="px-4 py-2 bg-green-600 text-white rounded-xl text-sm font-medium hover:bg-green-700 transition-colors"
+                >
+                  Envoyer un autre message
+                </button>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">Nom complet</label>
-                  <input id="name" type="text" className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" placeholder="Marie Kouassi" />
+                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1.5">Entreprise</label>
+                  <input
+                    id="company"
+                    type="text"
+                    required
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-gray-900"
+                    placeholder="Grafitec Industries"
+                  />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">Nom complet</label>
+                    <input
+                      id="name"
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-gray-900"
+                      placeholder="Marie Kouassi"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">Email pro</label>
+                    <input
+                      id="email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-gray-900"
+                      placeholder="marie@grafitec.com"
+                    />
+                  </div>
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">Email pro</label>
-                  <input id="email" type="email" className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" placeholder="marie@grafitec.com" />
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">Votre besoin</label>
+                  <textarea
+                    id="message"
+                    rows={4}
+                    required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-none text-gray-900"
+                    placeholder="Décrivez brièvement votre processus actuel et votre objectif d'automatisation..."
+                  />
                 </div>
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">Votre besoin</label>
-                <textarea id="message" rows={4} className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-none" placeholder="Décrivez brièvement votre processus actuel et votre objectif d'automatisation..." />
-              </div>
-              <button type="button" className="inline-flex items-center gap-2 w-full md:w-auto justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-                Lancer mon projet
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="inline-flex items-center gap-2 w-full md:w-auto justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50"
+                >
+                  {loading ? "Envoi en cours..." : "Lancer mon projet"}
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </form>
+            )}
           </motion.div>
 
           <motion.div
@@ -119,10 +194,10 @@ export default function Contact() {
               <p className="text-blue-100 text-sm mb-4">
                 Réservez un créneau de 15 minutes avec l'un de nos experts pour un diagnostic rapide et gratuit.
               </p>
-              <button type="button" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-blue-600 font-semibold hover:bg-gray-100 transition-colors">
+              <a href="tel:+2250712867483" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-blue-600 font-semibold hover:bg-gray-100 transition-colors">
                 Réserver un appel
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
