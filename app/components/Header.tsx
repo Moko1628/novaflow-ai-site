@@ -2,14 +2,15 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X, LogIn } from 'lucide-react';
+import ClientPortal from './ClientPortal';
 
 const nav = [
   { label: 'Services', href: '#services' },
   { label: 'Simulateur', href: '#simulateur' },
   { label: 'Cas clients', href: '#cas-clients' },
+  { label: 'Blog', href: '#blog' },
   { label: 'Tarifs', href: '#tarifs' },
-  { label: 'FAQ', href: '#faq' },
 ];
 
 export default function Header() {
@@ -29,17 +30,18 @@ export default function Header() {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-6">
           {nav.map((item) => (
             <a key={item.href} href={item.href} className="text-sm font-medium text-gray-600 hover:text-gray-950 transition-colors">
               {item.label}
             </a>
           ))}
+          <div className="h-6 w-px bg-gray-200 mx-1"></div>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors shadow-sm"
           >
-            Parler à un expert
+            Expert
             <ArrowRight className="w-4 h-4" />
           </a>
         </nav>
@@ -47,7 +49,7 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors"
+          className="lg:hidden p-2 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors"
           aria-label="Menu"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -61,7 +63,7 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b border-gray-200 bg-white/95 backdrop-blur-xl px-6 py-6 space-y-4 shadow-xl"
+            className="lg:hidden border-b border-gray-200 bg-white/95 backdrop-blur-xl px-6 py-6 space-y-4 shadow-xl"
           >
             {nav.map((item) => (
               <a
@@ -73,14 +75,13 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
-            <div className="pt-2">
+            <div className="pt-2 border-t border-gray-100 flex flex-col gap-3">
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
                 className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
               >
                 Parler à un expert
-                <ArrowRight className="w-4 h-4" />
               </a>
             </div>
           </motion.div>

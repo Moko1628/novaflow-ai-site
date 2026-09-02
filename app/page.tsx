@@ -7,6 +7,7 @@ import WorkflowSimulator from "./components/WorkflowSimulator";
 import CaseStudies from "./components/CaseStudies";
 import AuditEstimator from "./components/AuditEstimator";
 import Pricing from "./components/Pricing";
+import Blog from "./components/Blog";
 import SocialProof from "./components/SocialProof";
 import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
@@ -27,6 +28,7 @@ export default function Home() {
       <CaseStudies />
       <AuditEstimator />
       <Pricing />
+      <Blog />
       <SocialProof />
       <FAQ />
       <Contact />
