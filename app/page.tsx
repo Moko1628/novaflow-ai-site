@@ -4,6 +4,8 @@ import Services from "./components/Services";
 import HowItWorks from "./components/HowItWorks";
 import ROICalculator from "./components/ROICalculator";
 import WorkflowSimulator from "./components/WorkflowSimulator";
+import CaseStudies from "./components/CaseStudies";
+import AuditEstimator from "./components/AuditEstimator";
 import Pricing from "./components/Pricing";
 import SocialProof from "./components/SocialProof";
 import FAQ from "./components/FAQ";
@@ -22,6 +24,8 @@ export default function Home() {
       <HowItWorks />
       <ROICalculator />
       <WorkflowSimulator />
+      <CaseStudies />
+      <AuditEstimator />
       <Pricing />
       <SocialProof />
       <FAQ />

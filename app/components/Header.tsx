@@ -6,10 +6,10 @@ import { ArrowRight, Menu, X } from 'lucide-react';
 
 const nav = [
   { label: 'Services', href: '#services' },
-  { label: 'Comment ça marche', href: '#comment-ca-marche' },
+  { label: 'Simulateur', href: '#simulateur' },
+  { label: 'Cas clients', href: '#cas-clients' },
   { label: 'Tarifs', href: '#tarifs' },
   { label: 'FAQ', href: '#faq' },
-  { label: 'À propos', href: '#a-propos' },
 ];
 
 export default function Header() {
@@ -23,7 +23,8 @@ export default function Header() {
       className="fixed top-0 inset-x-0 z-50 border-b border-white/60 bg-white/70 backdrop-blur-xl"
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
-        <a href="/" className="font-extrabold text-lg tracking-tight text-gray-950">
+        <a href="/" className="font-extrabold text-lg tracking-tight text-gray-950 flex items-center gap-2">
+          <span className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600"></span>
           NovaFlow AI
         </a>
 
@@ -36,7 +37,7 @@ export default function Header() {
           ))}
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors shadow-sm"
           >
             Parler à un expert
             <ArrowRight className="w-4 h-4" />
@@ -60,7 +61,7 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b border-gray-200 bg-white/95 backdrop-blur-xl px-6 py-6 space-y-4"
+            className="md:hidden border-b border-gray-200 bg-white/95 backdrop-blur-xl px-6 py-6 space-y-4 shadow-xl"
           >
             {nav.map((item) => (
               <a
