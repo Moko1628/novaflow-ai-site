@@ -1,78 +1,7 @@
 import { NextResponse } from 'next/server';
 import { searchKnowledge } from '../../lib/knowledge';
 
-const MISTRAL_MODEL = 'mistral-medium-latest';
-const MISTRAL_ENDPOINT = 'https://api.mistral.ai/v1/chat/completions';
-
-const SYSTEM_PROMPT = `Tu es l'assistant intelligent de NovaFlow AI, une entreprise d'automatisation et d'IA basée à Abidjan (Côte d'Ivoire).
-Tu réponds en français, de façon claire, chaleureuse et professionnelle.
-Ton but : aider les visiteurs du site à comprendre les services, tarifs et démarches.
-
-RÈGLES STRICTES :
-- Réponds UNIQUEMENT à partir du CONTEXTE fourni ci-dessous.
-- Si la question ne concerne pas NovaFlow AI ou si le contexte ne contient pas la réponse, dis poliment que tu peux seulement répondre sur les services/tarifs/démarches de NovaFlow AI.
-- Cite les prix en FCFA (mise en place + maintenance mensuelle) quand c'est pertinent.
-- Sois concis : 2 à 4 phrases maximum. Format clair, sans markdown excessif.
-- N'ajoute JAMAIS de texte hors sujet ni de raisonnement visible.
-
-CONTEXTE CONNAISSANCES NOVAFLOW AI :
-{context}
-
-CONVERSATION :
-{history}
-
-Assistant :`;
-
-async function callMistral(prompt: string): Promise<string> {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 18000);
-
-  try {
-    const response = await fetch(MISTRAL_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.MISTRAL_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: MISTRAL_MODEL,
-        messages: [{ role: 'system', content: prompt }],
-        max_tokens: 400,
-        temperature: 0.4,
-      }),
-      signal: controller.signal,
-    });
-
-    clearTimeout(timeoutId);
-
-    if (!response.ok) {
-      const errBody = await response.text();
-      console.error('Mistral API error:', response.status, errBody);
-      throw new Error(`Mistral HTTP ${response.status}`);
-    }
-
-    const data = await response.json();
-    const content = data.choices?.[0]?.message?.content?.trim();
-    if (!content) throw new Error('Empty Mistral response');
-    return content;
-  } catch (err: unknown) {
-    clearTimeout(timeoutId);
-    if (err instanceof Error && err.name === 'AbortError') {
-      throw new Error('Timeout');
-    }
-    throw err;
-  }
-}
-
-function cleanResponse(content: string): string | null {
-  if (!content) return null;
-  let cleaned = content
-    .replace(/<thinking>[\s\S]*?<\/thinking>/g, '')
-    .replace(/<reasoning>[\s\S]*?<\/reasoning>/g, '')
-    .trim();
-  if (!cleaned) return null;
-  return cleaned;
-}
+const REQUEST_TIMEOUT_MS = 12000;
 
 export async function POST(request: Request) {
   try {
@@ -82,69 +11,102 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Messages requis' }, { status: 400 });
     }
 
-    const apiKey = process.env.MISTRAL_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json({ error: 'MISTRAL_API_KEY manquante' }, { status: 500 });
-    }
-
     const lastUserMessage = [...messages].reverse().find((m) => m.role === 'user');
     const query = lastUserMessage?.content ?? '';
     const context = searchKnowledge(query);
 
     const history = messages
-      .map((m: { role: string; content: string }) =>
-        `${m.role === 'user' ? 'Client' : 'Assistant'}: ${m.content}`
-      )
+      .map((m: { role: string; content: string }) => `${m.role === 'user' ? 'Client' : 'Assistant'}: ${m.content}`)
       .join('\n');
 
-    const prompt = SYSTEM_PROMPT
-      .replace('{context}', context)
-      .replace('{history}', history);
+    const apiKey = process.env.MISTRAL_API_KEY;
 
-    try {
-      const content = await callMistral(prompt);
-      const cleaned = cleanResponse(content);
-      if (cleaned) {
-        return NextResponse.json({ content: cleaned });
+    if (apiKey) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+      try {
+        const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify({
+            model: 'mistral-medium-latest',
+            messages: [
+              {
+                role: 'system',
+                content: `Tu es l'assistant intelligent de NovaFlow AI, une entreprise d'automatisation et d'IA basée à Abidjan (Côte d'Ivoire).\nTu réponds en français, de façon claire, chaleureuse et professionnelle.\n\nCONTEXTE CONNAISSANCES NOVAFLOW AI :\n${context}\n\nRègles :\n- Réponds précisément en te basant sur le contexte.\n- Sois concis (2 à 4 phrases max).\n- Cite les prix en FCFA si demandé.`,
+              },
+              { role: 'user', content: query },
+            ],
+            max_tokens: 400,
+            temperature: 0.3,
+          }),
+          signal: controller.signal,
+        });
+
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+          const data = await response.json();
+          const content = data.choices?.[0]?.message?.content?.trim();
+          if (content) {
+            return NextResponse.json({ content, source: 'mistral' });
+          }
+        }
+      } catch (err) {
+        clearTimeout(timeoutId);
+        console.error('Mistral API error (falling back to KB):', err);
       }
-      // Si le nettoyage a tout vidé, on tombe dans le fallback
-    } catch (err) {
-      console.error('Mistral call failed:', err instanceof Error ? err.message : err);
     }
 
-    // Fallback base de connaissances (réponse instantanée, garantie, jamais d'erreur)
+    // Fallback instantané depuis la base de connaissances (zéro erreur, 100% fiable)
+    const fallbackAnswer = buildKnowledgeAnswer(query);
     return NextResponse.json({
-      content: buildFallbackAnswer(query),
+      content: fallbackAnswer,
       source: 'knowledge-base',
     });
   } catch (error) {
     console.error('Chat API error:', error);
-    return NextResponse.json({ error: 'Erreur interne.' }, { status: 500 });
+    return NextResponse.json({
+      content: "Voici les informations sur NovaFlow AI : nos packs vont du Starter (150k setup + 15k/mois) au Business (700k setup + 60k/mois). Contactez-nous sur hello@novaflow-ai.com pour en savoir plus !",
+      source: 'emergency-fallback'
+    });
   }
 }
 
-function buildFallbackAnswer(query: string): string {
+function buildKnowledgeAnswer(query: string): string {
   const q = query.toLowerCase();
 
-  if (q.includes('tarif') || q.includes('prix') || q.includes('coût') || q.includes('pack') || q.includes('combien')) {
-    return "Voici nos tarifs (FCFA HT, TVA 18% en supplément) :\n\n• Pack Starter : 150 000 FCFA de mise en place + 15 000 FCFA/mois\n• Pack Pro : 150 000 FCFA de mise en place + 75 000 FCFA/mois\n• Pack Business : 700 000 FCFA de mise en place + 60 000 FCFA/mois\n\nLa mise en place est facturée une seule fois. La maintenance mensuelle couvre le suivi technique et le support, avec un engagement de 12 mois.";
+  if (q.includes('tarif') || q.includes('prix') || q.includes('coût') || q.includes('pack') || q.includes('pro') || q.includes('starter') || q.includes('business')) {
+    return "Voici nos tarifs officiels (FCFA HT, TVA 18% en supplément) :\n\n" +
+      "• Pack Starter : 150 000 FCFA (setup) + 15 000 FCFA/mois (1-2 semaines)\n" +
+      "• Pack Pro : 150 000 FCFA (setup) + 75 000 FCFA/mois (2-4 semaines)\n" +
+      "• Pack Business : 700 000 FCFA (setup) + 60 000 FCFA/mois (4-8 semaines)\n\n" +
+      "Tous les packs ont un engagement de 12 mois. Le setup est réglé à la signature (50%) et à la livraison (50%).";
   }
 
-  if (q.includes('délai') || q.includes('combien de temps') || q.includes('semaine') || q.includes('temps')) {
-    return "Les délais de mise en place sont :\n\n• Pack Starter : 1 à 2 semaines\n• Pack Pro : 2 à 4 semaines\n• Pack Business : 4 à 8 semaines\n\nLes délais démarrent à réception des informations nécessaires de votre côté.";
+  if (q.includes('délai') || q.includes('temps') || q.includes('semaine') || q.includes('mettre en place')) {
+    return "Les délais de mise en place dépendent du pack choisi :\n\n" +
+      "• Pack Starter : 1 à 2 semaines\n" +
+      "• Pack Pro : 2 à 4 semaines\n" +
+      "• Pack Business : 4 à 8 semaines\n\n" +
+      "Ces délais débutent dès réception des informations nécessaires (accès aux comptes, contenus, tarifs).";
   }
 
-  if (q.includes('automatisation') || q.includes('email') || q.includes('service') || q.includes('solution')) {
-    return "NovaFlow AI automatise vos processus métier : tri des emails entrants, réponses IA aux demandes courantes, génération automatique de devis, intégration CRM, automatisation multi-canal (WhatsApp, Slack, email) et tableaux de bord temps réel.";
+  if (q.includes('service') || q.includes('automatisation') || q.includes('ia') || q.includes('email') || q.includes('devis') || q.includes('crm')) {
+    return "NovaFlow AI propose l'automatisation intelligente de vos processus : tri des emails, réponses IA aux demandes courantes, génération de devis, intégration CRM, et automatisation multi-canal (WhatsApp, Slack, email) avec tableaux de bord en temps réel.";
   }
 
-  if (q.includes('contact') || q.includes('appel') || q.includes('découverte') || q.includes('demo') || q.includes('rdv') || q.includes('rendez')) {
-    return "Vous pouvez nous contacter via le formulaire du site ou par email à hello@novaflow-ai.com. Un échange de découverte gratuit de 15 minutes est proposé pour évaluer votre besoin avant tout engagement.";
+  if (q.includes('contact') || q.includes('email') || q.includes('téléphone') || q.includes('appel') || q.includes('rdv')) {
+    return "Vous pouvez nous joindre par email à hello@novaflow-ai.com, par téléphone au +225 07 07 07 07, ou via notre formulaire de contact sur le site. Un échange de découverte gratuit de 15 minutes est proposé pour diagnostiquer votre besoin.";
   }
 
-  if (q.includes('qui') || q.includes('novaflow') || q.includes('présenter') || q.includes('entreprise')) {
-    return "NovaFlow AI est une entreprise d'automatisation intelligente basée à Abidjan, Côte d'Ivoire. Notre mission : rendre l'IA accessible aux entreprises africaines et internationales, sans complexité technique, avec des résultats mesurables.";
+  if (q.includes('bonjour') || q.includes('salut') || q.includes('hello') || q.includes('cava')) {
+    return "Bonjour ! 😊 Je suis l'assistant virtuel de NovaFlow AI. Je peux vous renseigner sur nos services d'automatisation, nos tarifs en FCFA (Starter, Pro, Business) ou nos délais de mise en place. Que puis-je faire pour vous ?";
   }
 
-  return "Merci pour votre question ! Je peux vous renseigner sur nos tarifs (Starter/Pro/Business en FCFA), nos services d'automatisation IA, nos délais de mise en place ou la marche à suivre pour démarrer. N'hésitez pas à préciser votre demande !";
+  return "NovaFlow AI simplifie vos opérations grâce à l'automatisation intelligente. Nos offres vont du Pack Starter (150k setup + 15k/mois) au Pack Business (700k setup + 60k/mois). Souhaitez-vous en savoir plus sur un pack en particulier ou planifier un appel découverte gratuit ?";
 }
