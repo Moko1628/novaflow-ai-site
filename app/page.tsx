@@ -1,41 +1,19 @@
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Services from "./components/Services";
-import HowItWorks from "./components/HowItWorks";
-import ROICalculator from "./components/ROICalculator";
-import WorkflowSimulator from "./components/WorkflowSimulator";
-import CaseStudies from "./components/CaseStudies";
-import AuditEstimator from "./components/AuditEstimator";
-import Pricing from "./components/Pricing";
-import Blog from "./components/Blog";
-import SocialProof from "./components/SocialProof";
-import FAQ from "./components/FAQ";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import ChatWidget from "./components/ChatWidget";
-import ClientPortal from "./components/ClientPortal";
-import QuickContact from "./components/QuickContact";
+import Hero from "@/app/components/Hero";
+import About from "@/app/components/About";
+import Services from "@/app/components/Services";
+import HowItWorks from "@/app/components/HowItWorks";
+import SocialProof from "@/app/components/SocialProof";
+import FAQ from "@/app/components/FAQ";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <div className="space-y-16">
       <Hero />
       <About />
       <Services />
       <HowItWorks />
-      <ROICalculator />
-      <WorkflowSimulator />
-      <CaseStudies />
-      <AuditEstimator />
-      <Pricing />
-      <Blog />
       <SocialProof />
       <FAQ />
-      <Contact />
-      <Footer />
-      <ChatWidget />
-      <ClientPortal />
-      <QuickContact />
-    </main>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import LegalModal from "./LegalModal";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -14,25 +14,29 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Navigation</h4>
+          <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Pages & Solutions</h4>
           <ul className="space-y-2.5 text-sm">
-            <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
-            <li><a href="#comment-ca-marche" className="hover:text-white transition-colors">Comment ça marche</a></li>
-            <li><a href="#tarifs" className="hover:text-white transition-colors">Offres &amp; Tarifs</a></li>
-            <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
-            <li><a href="#a-propos" className="hover:text-white transition-colors">À propos</a></li>
-            <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+            <li><a href="/agents" className="hover:text-white transition-colors">Catalogue Agents</a></li>
+            <li><a href="/solutions" className="hover:text-white transition-colors">Solutions par Secteur</a></li>
+            <li><a href="/simulateur" className="hover:text-white transition-colors">Simulateur &amp; Sandbox</a></li>
+            <li><a href="/tarifs" className="hover:text-white transition-colors">Offres &amp; Tarifs</a></li>
+            <li><a href="/roi" className="hover:text-white transition-colors">Calculateur de ROI</a></li>
+            <li><a href="/cas-clients" className="hover:text-white transition-colors">Cas Clients</a></li>
+            <li><a href="/blog" className="hover:text-white transition-colors">Le Mag / Blog</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Légal &amp; Sécurité</h4>
-          <div className="space-y-2.5">
-            <LegalModal />
-            <p className="text-xs text-gray-500 pt-2">
-              Conformité stricte des données et chiffrement de bout en bout.
-            </p>
-          </div>
+          <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Entreprise &amp; Légal</h4>
+          <ul className="space-y-2.5 text-sm">
+            <li><a href="/a-propos" className="hover:text-white transition-colors">À propos</a></li>
+            <li><a href="/audit" className="hover:text-white transition-colors">Audit Gratuit</a></li>
+            <li><a href="/espace-client" className="hover:text-white transition-colors">Espace Client</a></li>
+            <li><a href="/faq" className="hover:text-white transition-colors">FAQ &amp; Support</a></li>
+            <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
+            <li><a href="/legal/mentions-legales" className="hover:text-white transition-colors">Mentions Légales</a></li>
+            <li><a href="/legal/confidentialite" className="hover:text-white transition-colors">Confidentialité &amp; RGPD</a></li>
+          </ul>
         </div>
 
         <div>
@@ -40,7 +44,7 @@ export default function Footer() {
           <p className="text-sm text-gray-400 mb-2">Abidjan, Côte d'Ivoire</p>
           <p className="text-sm text-gray-400 mb-4">konemoh203@gmail.com</p>
           <a
-            href="#contact"
+            href="/contact"
             className="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors"
           >
             Prendre rendez-vous
