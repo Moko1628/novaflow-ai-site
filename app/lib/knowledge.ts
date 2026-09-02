@@ -63,7 +63,7 @@ export const knowledgeBase: KnowledgeChunk[] = [
   {
     id: 'process-steps',
     title: 'Procédure de démarrage',
-    content: "1) Contact via le site ou email (hello@novaflow-ai.com), 2) Échange de découverte gratuit de 15 minutes, 3) Proposition d'un devis adapté, 4) Validation et démarrage (délai de 1 à 8 semaines selon le pack), 5) Livraison, formation et support continu.",
+    content: "1) Contact via le site ou email (konemoh203@gmail.com), 2) Échange de découverte gratuit de 15 minutes, 3) Proposition d'un devis adapté, 4) Validation et démarrage (délai de 1 à 8 semaines selon le pack), 5) Livraison, formation et support continu.",
     category: 'process'
   }
 ];

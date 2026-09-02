@@ -35,7 +35,7 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Contact direct</h4>
           <p className="text-sm text-gray-400 mb-2">Abidjan, Côte d'Ivoire</p>
-          <p className="text-sm text-gray-400 mb-4">hello@novaflow-ai.com</p>
+          <p className="text-sm text-gray-400 mb-4">konemoh203@gmail.com</p>
           <a
             href="#contact"
             className="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors"

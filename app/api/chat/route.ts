@@ -206,8 +206,8 @@ function buildSmartAnswer(query: string, context: string): string {
   // === Contact ===
   if (q.includes('contact') || q.includes('appel') || q.includes('découverte') || q.includes('rdv') || q.includes('rendez') || q.includes('parler')) {
     return "Contactez-nous :\n\n" +
-      "• Email : hello@novaflow-ai.com\n" +
-      "• Téléphone : +225 07 07 07 07\n" +
+      "• Email : konemoh203@gmail.com\n" +
+      "• Téléphone : +225 07 12 86 74 83\n" +
       "• Formulaire sur le site (section Contact)\n" +
       "• Échange de découverte gratuit de 15 minutes\n\n" +
       "Nous répondons sous 48h ouvrées.";
@@ -236,6 +236,6 @@ function buildSmartAnswer(query: string, context: string): string {
   return "Merci pour votre question ! Voici ce que je peux vous dire :\n\n" +
     "• Nos 3 packs : Starter (15k/mois), Pro (75k/mois), Business (60k/mois)\n" +
     "• Services : automatisation emails, devis auto, CRM, multi-canal WhatsApp/Slack\n" +
-    "• Contact : hello@novaflow-ai.com ou échange gratuit de 15 min\n\n" +
+    "• Contact : konemoh203@gmail.com ou échange gratuit de 15 min\n\n" +
     "N'hésitez pas à préciser votre demande pour une réponse plus détaillée !";
 }

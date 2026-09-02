@@ -8,15 +8,15 @@ const contactMethods = [
   {
     icon: Mail,
     label: "Email",
-    value: "hello@novaflow-ai.com",
-    href: "mailto:hello@novaflow-ai.com",
+    value: "konemoh203@gmail.com",
+    href: "mailto:konemoh203@gmail.com",
     color: "from-blue-500 to-cyan-500",
   },
   {
     icon: Phone,
     label: "Téléphone",
-    value: "+225 07 07 07 07",
-    href: "tel:+22507070707",
+    value: "+225 07 12 86 74 83",
+    href: "tel:+2250712867483",
     color: "from-purple-500 to-pink-500",
   },
   {
